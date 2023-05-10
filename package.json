@@ -40,7 +40,7 @@
     "mysql2": "^3.2.4",
     "office-text-extractor": "^2.0.0",
     "telegraf": "^4.12.2",
-    "utilitas": "^1995.0.4",
+    "utilitas": "github:mccoysc/utilitas.git",
     "youtube-transcript": "^1.0.6"
   }
 }
