@@ -4,6 +4,7 @@ import { parse } from 'csv-parse/sync';
 await utilitas.locate(utilitas.__(import.meta.url, 'package.json'));
 const log = content => utilitas.log(content, 'halbot');
 const skillPath = utilitas.__(import.meta.url, 'skills');
+const envConfig=JSON.parse(process.env.BOT_CONFIG || "{}")
 
 const promptSource = new Set([
     // 'https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv',
@@ -28,6 +29,11 @@ const fetchPrompts = async () => {
 };
 
 const init = async (options) => {
+    if(!options){
+        options=envConfig;
+    }
+    Object.assign(options,envConfig);
+
     assert(options?.telegramToken, 'Telegram Bot API Token is required.');
     const [pkg, ai, _speech] = [await utilitas.which(), {}, {}];
     const info = bot.lines([`[${bot.EMOJI_BOT} ${pkg.title}](${pkg.homepage})`, pkg.description]);
