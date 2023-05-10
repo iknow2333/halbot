@@ -2,7 +2,11 @@
 
 import { cache, dbio, memory, storage as _storage, utilitas } from 'utilitas';
 import halbot from '../index.mjs';
+import * as fs from "fs";
 
+if(!fs.existsSync("~/.halbot.json")){
+    fs.writeFileSync("~/.halbot.json","{}");
+}
 const debug = utilitas.humanReadableBoolean(process.env['DEBUG']);
 const log = content => utilitas.log(content, import.meta.url);
 const MEMORY = 'memory';
